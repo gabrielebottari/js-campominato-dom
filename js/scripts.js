@@ -73,7 +73,6 @@ function play() {
 
 }
 
-
 //creo una funzione per generare le celle
 function generateCells(cellsNumber, difficulty) {
 
@@ -109,9 +108,13 @@ function generateCells(cellsNumber, difficulty) {
 
                 //termino il gioco
                 endGame();
-           
+
+            //se non non ha classe active
             }else if (!this.classList.contains('active')) {
-                    this.classList.add('active');
+
+                //da classe active
+                this.classList.add('active');
+
                 //aumento il punteggio
                 score++
 
@@ -138,7 +141,6 @@ function generateCells(cellsNumber, difficulty) {
     }
 }
 
-
 //funzione per generare le bombe
 function generateBombs(cellsNumber) {
 
@@ -162,7 +164,6 @@ function generateBombs(cellsNumber) {
     //restituisco l'array
     return bombArray;
 }
-
 
 // Funzione per terminare il gioco
 function endGame() {
@@ -192,7 +193,6 @@ function updateScore() {
 
     scoreDisplay.innerHTML = 'Score: ' + score;
 }
-
 
 //funzione per il tasto reset che svuoterà il contenitore della griglia
 function reset() {
