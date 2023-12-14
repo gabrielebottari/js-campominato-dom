@@ -73,6 +73,7 @@ function play() {
 
 }
 
+
 //creo una funzione per generare le celle
 function generateCells(cellsNumber, difficulty) {
 
@@ -96,9 +97,6 @@ function generateCells(cellsNumber, difficulty) {
 
         //al click sulla cella parte la funzione
         cell.addEventListener('click', function() {
-                
-            //ogni cella selezionata verrà aggiunta la classe active
-            this.classList.add('active');
                             
             //stampo in console il numero della cella
             console.log('You clicked on cell n° ' + this.innerHTML);
@@ -111,16 +109,17 @@ function generateCells(cellsNumber, difficulty) {
 
                 //termino il gioco
                 endGame();
-
-            } else {
-                
+           
+            }else if (!this.classList.contains('active')) {
+                    this.classList.add('active');
                 //aumento il punteggio
-                score++;
+                score++
 
                 //mostro il punteggio
                 console.log(`Your score: ${score}`)
 
                 document.getElementById('scoreDisplay').innerHTML = `YOUR SCORE: ${score}`
+                
             
                 //se l'utente ha rivelato tutte le celle che non sono bombe
                 if (score === (cellsNumber - bombCount)) {
@@ -138,6 +137,7 @@ function generateCells(cellsNumber, difficulty) {
 
     }
 }
+
 
 //funzione per generare le bombe
 function generateBombs(cellsNumber) {
@@ -162,6 +162,7 @@ function generateBombs(cellsNumber) {
     //restituisco l'array
     return bombArray;
 }
+
 
 // Funzione per terminare il gioco
 function endGame() {
