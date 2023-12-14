@@ -18,15 +18,20 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l'utente ha cliccato su una cella che non era una bomba.
 */
 
+//dichiaro una costante sui livelli di difficoltà che voglio avere e con quante celle
 const difficultyLevels = {
     easy: 100,
     medium: 81,
     hard: 49
 };
+
+//dichiaro una costante sul numero di bombe che voglio inserire
 const bombCount = 16;
 
+//dichiaro una costante griglia e l'associo al div con id grid
 let grid = document.getElementById('grid');
 
+//dichiaro una variabile con il punteggio iniziale a zero
 let score = 0;
 
 
@@ -65,7 +70,7 @@ function play() {
 //creo una funzione per generare le celle
 function generateCells(cellsNumber, difficulty) {
 
-    // Array per tenere traccia delle bombe generate
+    //creo una variabile per associare l'array di bombe utilizzando la funzione generate bombs
     let bombArray = generateBombs(cellsNumber);
 
     //faccio un ciclo in base al numero di celle dovuto alla difficoltà selezionata
@@ -90,23 +95,33 @@ function generateCells(cellsNumber, difficulty) {
             this.classList.add('active');
                             
             //stampo in console il numero della cella
-            console.log('Hai cliccato sulla cella N° ' + this.innerHTML);
+            console.log('You clicked on cell n° ' + this.innerHTML);
 
             // Controlla se la cella cliccata è una bomba
             if (bombArray.includes(i)) {
 
+                //aggiungo la classe bomb alla cella selezionata se è inclusa tra il numero di bombe generato casualmente
                 this.classList.add('bomb');
 
+                //termino il gioco
                 endGame();
 
             } else {
                 
+                //aumento il punteggio
                 score++;
+
+                //mostro il punteggio
+                console.log(`Your score: ${score}`)
             
-                // Check se l'utente ha rivelato tutte le celle che non sono bombe
+                //se l'utente ha rivelato tutte le celle che non sono bombe
                 if (score === (cellsNumber - bombCount)) {
 
-                endGame();
+                    //alert con il messagio di vittoria con punteggio
+                    alert('Congratulations! You won! Your Score: ' + score);
+
+                    //termino il gioco
+                    endGame();
 
                 }
             }
@@ -116,41 +131,56 @@ function generateCells(cellsNumber, difficulty) {
     }
 }
 
-// Funzione per generare le bombe
+//funzione per generare le bombe
 function generateBombs(cellsNumber) {
 
-    const bombCount = 16;
-
+    //creo un array vuoto
     let bombArray = [];
 
+    //ciclo while di durata fino al numero di bombe dichiarato precedentemente
     while (bombArray.length < bombCount) {
 
+        //dichiaro una variabile che creerà un numero casuale in base al numero di celle totali
         let bomb = Math.floor(Math.random() * cellsNumber) + 1;
 
+        //se il numero non è dentro all'array
         if (!bombArray.includes(bomb)) {
 
+            //lo inserico dentro
             bombArray.push(bomb);
         }
     }
 
+    //restituisco l'array
     return bombArray;
 }
 
 
 // Funzione per terminare il gioco
 function endGame() {
-    alert(`Game Over! Your Score: ${score}`);
 
-    reset();
+    //serve per permettere di far comparire il cambio di classe alla cella con la bomba
+    setTimeout(function() {
 
-    // Reimposta il punteggio per una nuova partita
-    score = 0;
+        //messaggio di fine partita con punteggio
+        alert('Game Over! Your total Score: ' + score);
+
+        //funzione reset
+        reset();
+
+        //reimposto il punteggio a 0 per la prossima partita
+        score = 0;
+    
+    //timeout a 0
+    }, 0);
+
 }
 
 
 //funzione per il tasto reset che svuoterà il contenitore della griglia
 function reset() {
 
+    //svuota la grglia
     grid.innerHTML = '';
 
 }
