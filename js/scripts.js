@@ -123,7 +123,6 @@ function generateCells(cellsNumber, difficulty) {
 
                 document.getElementById('scoreDisplay').innerHTML = `YOUR SCORE: ${score}`
                 
-            
                 //se l'utente ha rivelato tutte le celle che non sono bombe
                 if (score === (cellsNumber - bombCount)) {
 
