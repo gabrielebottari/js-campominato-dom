@@ -1,0 +1,45 @@
+/* 
+    RESET
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #0B5ED7;
+}
+
+.cell.active {
+    background-color: #0B5ED7;
+    border: 1px solid #CFF4FC;
+    color: #CFF4FC;
+}
+
+.cell.hard {
+    width: 10%;
+}
+
+.cell.medium {
+    width: calc(100% / 9);
+}
+
+.cell.easy {
+    width: calc(100% / 7);
+}
