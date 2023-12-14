@@ -18,6 +18,17 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l'utente ha cliccato su una cella che non era una bomba.
 */
 
+const difficultyLevels = {
+    easy: 100,
+    medium: 81,
+    hard: 49
+};
+const bombCount = 16;
+
+let grid = document.getElementById('grid');
+
+let score = 0;
+
 
 //funzione per far creare la griglia
 function play() {
@@ -30,15 +41,15 @@ function play() {
     let difficultyClass;
 
     //in base alla difficoltà assegno un numero di celle e do una classe che su css indicherà la larghezza della cella
-    if (select.value === 'easy') {
+    if (select.value === 'hard') {
         cellsNumber = 49;
-        difficultyClass = 'easy';
+        difficultyClass = 'hard';
     } else if (select.value === 'medium') {
         cellsNumber = 81;
         difficultyClass = 'medium';
-    } else if (select.value === 'hard') {
+    } else if (select.value === 'easy') {
         cellsNumber = 100;
-        difficultyClass = 'hard';
+        difficultyClass = 'easy';
     }
 
     //se ci sono già celle esco dalla funzione per non creare altre griglie
@@ -54,8 +65,8 @@ function play() {
 //creo una funzione per generare le celle
 function generateCells(cellsNumber, difficulty) {
 
-    //dichiaro una costante
-    const grid = document.getElementById('grid');
+    // Array per tenere traccia delle bombe generate
+    let bombArray = generateBombs(cellsNumber);
 
     //faccio un ciclo in base al numero di celle dovuto alla difficoltà selezionata
     for (let i = 1; i <= cellsNumber; i++) {
@@ -75,18 +86,71 @@ function generateCells(cellsNumber, difficulty) {
         //al click sulla cella parte la funzione
         cell.addEventListener('click', function() {
                 
-        //ogni cella selezionata verrà aggiunta la classe active, se già selezionata verrà tolta
-        this.classList.toggle('active');
-                        
-        //stampo in console il numero della cella
-        console.log('Hai cliccato sulla cella N° ' + this.innerHTML);
+            //ogni cella selezionata verrà aggiunta la classe active, se già selezionata verrà tolta
+            this.classList.add('active');
+                            
+            //stampo in console il numero della cella
+            console.log('Hai cliccato sulla cella N° ' + this.innerHTML);
+
+            // Controlla se la cella cliccata è una bomba
+            if (bombArray.includes(i)) {
+
+                this.classList.add('bomb');
+
+                endGame();
+
+            } else {
+                
+                score++;
+            
+                // Check se l'utente ha rivelato tutte le celle che non sono bombe
+                if (score === (cellsNumber - bombCount)) {
+
+                endGame();
+
+                }
+            }
                     
         });
 
     }
 }
 
+// Funzione per generare le bombe
+function generateBombs(cellsNumber) {
+
+    const bombCount = 16;
+
+    let bombArray = [];
+
+    while (bombArray.length < bombCount) {
+
+        let bomb = Math.floor(Math.random() * cellsNumber) + 1;
+
+        if (!bombArray.includes(bomb)) {
+
+            bombArray.push(bomb);
+        }
+    }
+
+    return bombArray;
+}
+
+
+// Funzione per terminare il gioco
+function endGame() {
+    alert(`Game Over! Your Score: ${score}`);
+
+    reset();
+
+    // Reimposta il punteggio per una nuova partita
+    score = 0;
+}
+
+
 //funzione per il tasto reset che svuoterà il contenitore della griglia
 function reset() {
+
     grid.innerHTML = '';
+
 }

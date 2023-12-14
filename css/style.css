@@ -32,7 +32,13 @@ html {
     color: #CFF4FC;
 }
 
-.cell.hard {
+.cell.bomb {
+    background-color: red;
+    border: 1px solid maroon;
+    color: maroon;
+}
+
+.cell.easy {
     width: 10%;
 }
 
@@ -40,6 +46,6 @@ html {
     width: calc(100% / 9);
 }
 
-.cell.easy {
+.cell.hard {
     width: calc(100% / 7);
 }
