@@ -34,7 +34,6 @@ let grid = document.getElementById('grid');
 //dichiaro una variabile con il punteggio iniziale a zero
 let score = 0;
 
-
 //funzione per far creare la griglia
 function play() {
 
@@ -49,9 +48,11 @@ function play() {
     if (select.value === 'hard') {
         cellsNumber = 49;
         difficultyClass = 'hard';
+
     } else if (select.value === 'medium') {
         cellsNumber = 81;
         difficultyClass = 'medium';
+        
     } else if (select.value === 'easy') {
         cellsNumber = 100;
         difficultyClass = 'easy';
@@ -97,7 +98,7 @@ function generateCells(cellsNumber, difficulty) {
             //stampo in console il numero della cella
             console.log('You clicked on cell n° ' + this.innerHTML);
 
-            // Controlla se la cella cliccata è una bomba
+            //controllo se la cella cliccata è una bomba
             if (bombArray.includes(i)) {
 
                 //aggiungo la classe bomb alla cella selezionata se è inclusa tra il numero di bombe generato casualmente
@@ -155,7 +156,6 @@ function generateBombs(cellsNumber) {
     return bombArray;
 }
 
-
 // Funzione per terminare il gioco
 function endGame() {
 
@@ -175,7 +175,6 @@ function endGame() {
     }, 0);
 
 }
-
 
 //funzione per il tasto reset che svuoterà il contenitore della griglia
 function reset() {
