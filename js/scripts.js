@@ -52,7 +52,7 @@ function play() {
     } else if (select.value === 'medium') {
         cellsNumber = 81;
         difficultyClass = 'medium';
-        
+
     } else if (select.value === 'easy') {
         cellsNumber = 100;
         difficultyClass = 'easy';
@@ -92,7 +92,7 @@ function generateCells(cellsNumber, difficulty) {
         //al click sulla cella parte la funzione
         cell.addEventListener('click', function() {
                 
-            //ogni cella selezionata verrà aggiunta la classe active, se già selezionata verrà tolta
+            //ogni cella selezionata verrà aggiunta la classe active
             this.classList.add('active');
                             
             //stampo in console il numero della cella
