@@ -45,6 +45,11 @@ function play() {
     let difficultyClass;
 
     //in base alla difficoltà assegno un numero di celle e do una classe che su css indicherà la larghezza della cella
+    if (select.value === '') {
+        alert('Select difficulty before start the game.');
+        return;
+    }
+
     if (select.value === 'hard') {
         cellsNumber = 49;
         difficultyClass = 'hard';
@@ -114,6 +119,8 @@ function generateCells(cellsNumber, difficulty) {
 
                 //mostro il punteggio
                 console.log(`Your score: ${score}`)
+
+                document.getElementById('scoreDisplay').innerHTML = `YOUR SCORE: ${score}`
             
                 //se l'utente ha rivelato tutte le celle che non sono bombe
                 if (score === (cellsNumber - bombCount)) {
@@ -165,6 +172,9 @@ function endGame() {
         //messaggio di fine partita con punteggio
         alert('Game Over! Your total Score: ' + score);
 
+        //aggiorna il punteggio
+        updateScore();
+
         //funzione reset
         reset();
 
@@ -176,10 +186,20 @@ function endGame() {
 
 }
 
+//funzione per aggiornare il punteggio nell'html
+function updateScore() {
+
+    scoreDisplay.innerHTML = 'Score: ' + score;
+}
+
+
 //funzione per il tasto reset che svuoterà il contenitore della griglia
 function reset() {
 
-    //svuota la grglia
+    //svuota la griglia
     grid.innerHTML = '';
+
+    //svuota il punteggio
+    scoreDisplay.innerHTML = `YOUR SCORE: 0`;
 
 }

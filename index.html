@@ -19,23 +19,32 @@
 
         <h1 class="fs-1 py-1">Griglia Campo Minato</h1>
 
-        <div class="container">
+        <div class="container-fluid">
 
-            <div class="px-5 text-center">
-                <label class="fs-3" for="difficulty">Choose Difficulty</label>
-                <select class="lh-lg border-primary pe-2 ms-1" id="difficulty">
-                    <option value="easy">Easy 100 cells</option>
-                    <option value="medium">Medium 81 cells</option>
-                    <option value="hard">Hard 49 cells</option>
-                </select>
+            <div class="row p-2">
+
+                <div class="px-3 py-2 text-center col-4">
+                    <label class="fs-3" for="difficulty">Choose Difficulty</label>
+                    <select class="lh-lg border-primary pe-2 ms-1" id="difficulty">
+                        <option value="">Select Difficulty</option>
+                        <option value="easy">Easy 100 cells</option>
+                        <option value="medium">Medium 81 cells</option>
+                        <option value="hard">Hard 49 cells</option>
+                    </select>
+                </div>
+    
+                <div class="py-2 col-4">
+                    <button class="px-4 py-2 fs-5 rounded-2 mx-2 btn btn-primary" id="mybutton" onclick="play()" type="button">Play!</button>
+                    <button class="px-4 py-2 fs-5 rounded-2 mx-2 btn btn-primary" id="mybutton" onclick="reset()" type="button">Reset</button>
+                </div>
+    
+                <div id="scoreDisplay" class="col fs-3 text-center py-2 col-4">
+                    YOUR score: 0
+                </div>
+
             </div>
 
-            <div class="p-2">
-                <button class="px-4 py-2 fs-5 rounded-2 mx-2 btn btn-primary" id="mybutton" onclick="play()" type="button">Play!</button>
-                <button class="px-4 py-2 fs-5 rounded-2 mx-2 btn btn-primary" id="mybutton" onclick="reset()" type="button">Reset</button>
-            </div>
-
-            <div id="grid">
+            <div id="grid" class="col-12">
 
             </div>
 
